@@ -61,9 +61,12 @@ function draw(){
   sumX = x + dx; sumY = y + dy;
   if(sumY < ballRadius){
     dy = -dy;
-  }else if(sumY > canvas.height - ballRadius){
-    if(x <= paddleX || x >= paddleX + paddleWidth) alert("Oops..! Game Over."); //GameOver condition
-    dy = -dy;
+  }else if(sumY > canvas.height - paddleHeight - ballRadius){
+    if(x >= paddleX && x <= paddleX + paddleWidth) dy = -dy;
+    else if(sumY > canvas.height - ballRadius) {
+      alert("Oops..! Game Over."); //GameOver condition
+      dy = -dy;
+    }
   }
   if(sumX > (canvas.width - ballRadius) || sumX < ballRadius) dx = -dx;
   if(leftPressed && paddleX > 0) paddleX -= paddleMovement;
